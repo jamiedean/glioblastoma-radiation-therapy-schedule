@@ -163,36 +163,36 @@ perfrom_progression_location_analysis <- function(experimental_data, control_dat
 ###############################################################################################################
 
 external_control <- 
-  read.csv('/Users/jamiedean/Documents/Projects/MARS-Glio Trial/gbm_reirradiation_patient_data.csv')
-mars_glio <- read.csv('/Users/jamiedean/Documents/Projects/MARS-Glio Trial/mars_glio_baseline_data.csv')
+  read.csv('data/external_control_data.csv')
+trial <- read.csv('data/trial_data.csv')
 
 # Radiation therapy biologically effective dose
-mars_glio$rt_bed <- 47.25
+trial$rt_bed <- 47.25
 
 alpha_beta_ratio <- 10
 external_control$rt_bed <-
   external_control$rt_dose*(1 + (external_control$rt_dose/external_control$rt_fractions)/alpha_beta_ratio)
 
-mars_glio$time_between_progressions <-
-  mars_glio$time_initial_reirradiation/mars_glio$progression_number
-external_control$time_between_progressions <-
-  external_control$time_initial_reirradiation/external_control$progression_number
+#trial$time_between_progressions <-
+#  trial$time_initial_reirradiation/trial$progression_number
+#external_control$time_between_progressions <-
+#  external_control$time_initial_reirradiation/external_control$progression_number
 
 # Impute missing KPS data
 external_control$kps[is.na(external_control$kps)] <- median(external_control$kps, na.rm = TRUE)
 
 # Bevacizumab
-mars_glio$any_bevacizumab <- 
-  rowMaxs(as.matrix(mars_glio[, c('concurrent_bevacizumab', 'prior_bevacizumab')]))
+trial$any_bevacizumab <- 
+  rowMaxs(as.matrix(trial[, c('concurrent_bevacizumab', 'prior_bevacizumab')]))
 external_control$any_bevacizumab <- 
   rowMaxs(as.matrix(external_control[, c('concurrent_bevacizumab', 'prior_bevacizumab')]))
 
 covariates <- c('male', 'age', 'kps', 'time_initial_reirradiation', 'volume', 'rt_bed', 'any_bevacizumab')
 
-p_covariate_distributions <- plot_covariate_distributions(mars_glio, external_control)
+p_covariate_distributions <- plot_covariate_distributions(trial, external_control)
 
-p_survival <- perform_survival_analysis(mars_glio, external_control, covariates)
-p_progression_location <- perfrom_progression_location_analysis(mars_glio, external_control, covariates)
+p_survival <- perform_survival_analysis(trial, external_control, covariates)
+p_progression_location <- perfrom_progression_location_analysis(trial, external_control, covariates)
 
 ###############################################################################################################
 
