@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import gbm_radiation_response_model as model
 import warnings
 
+# Suppress warnings due to overflow. These do not affect results.
 warnings.filterwarnings('ignore')
 
 os.chdir('/Users/jamiedean/Documents/Papers/In Revision/Novel Glioblastoma Radiation Schedule/Github Repository/glioblastoma-radiation-therapy-schedule/code')

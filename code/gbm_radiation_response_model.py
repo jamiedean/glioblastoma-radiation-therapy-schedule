@@ -199,7 +199,9 @@ def J3(t, z, parameters):
             np.exp(-L_s*(z + lambda_s)) - np.exp(-(t - M_d)*(z + lambda_s))) \
             - lambda_s*np.exp(z*t + lambda_s*L_s)*np.exp(-eta_d*(t - M_d))/(z + lambda_s - eta_d)*(
             np.exp(-L_s*(z + lambda_s - eta_d)) - np.exp(-(t - M_d)*(z + lambda_s - eta_d)))
-            
+          
+    # nan values are generated due to multiplying inf (created due to overflow) by 0. Set these values to 0.
+    # This does not affect results. This can be verified by using a shorter evaluationTime so no inf values are created.
     if (np.isnan(J3) == True):
         
         J3 = 0
@@ -237,6 +239,8 @@ def J4(t, z, parameters):
             + np.exp(-eta_d*M_d)/(lambda_s + z)*(
             np.exp(-(lambda_s + z)*(t - M_d)) - np.exp(-t*(lambda_s + z))))
             
+    # nan values are generated due to multiplying inf (created due to overflow) by 0. Set these values to 0.
+    # This does not affect results. This can be verified by using a shorter evaluationTime so no inf values are created.
     if (np.isnan(J4) == True):
         
         J4 = 0
