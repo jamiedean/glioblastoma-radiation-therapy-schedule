@@ -34,17 +34,12 @@ treatment_strategy_diagram <- ggdraw() +
 ###############################################################################################################
 
 figure <-
-  plot_grid(
-    plot_grid(compare_schedules_tid_10d_volume,
-              compare_schedules_hypo_tid_volume,
-              compare_schedules_tid_10d_stem_cells,
-              compare_schedules_hypo_tid_stem_cells,
-              labels = c('A', 'C', 'B', 'D'),
-              ncol = 2),
-    treatment_strategy_diagram,
-    labels = c('', 'E'),
-    ncol = 1,
-    rel_widths = c(1.5, 1.25),
-    rel_heights = c(1.5, 1.25))
-
-save_plot('figures/figure_4.pdf', figure, ncol = 1.2, nrow = 2)
+  plot_grid(compare_schedules_tid_10d_volume,
+            compare_schedules_hypo_tid_volume,
+            compare_schedules_tid_10d_stem_cells,
+            compare_schedules_hypo_tid_stem_cells,
+            labels = c('A', 'C', 'B', 'D'),
+            ncol = 2) +
+  theme(plot.background = element_rect(fill = 'white', color = NA))
+save_plot('figures/figure_1.pdf', figure, ncol = 2, nrow = 2)
+save_plot('figures/figure_1.tiff', figure, ncol = 2, nrow = 2)

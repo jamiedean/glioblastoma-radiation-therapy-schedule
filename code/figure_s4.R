@@ -160,4 +160,4 @@ figure <-
     nrow = 2,
     rel_heights = c(0.66, 1))
 
-save_plot('figures/figure_3.pdf', figure, ncol = 3, nrow = 4, device = cairo_pdf)
+save_plot('figures/figure_s4.pdf', figure, ncol = 3, nrow = 4, device = cairo_pdf)
