@@ -73,7 +73,7 @@ def gamma(t0, parameters):
     
     if (t0 == 'firstDose'):
         
-        gamma = 0
+        gamma = gamma0
         
     else:
     
@@ -90,12 +90,8 @@ def J1_d(t, z, parameters):
 
     if (z + lambda_d != 0):
         
-        if (t == L_d):
-            
-            J1_d = 0
-            
         # If time is less than minimum quiescence time cells do not proliferate
-        elif (t < L_d):
+        if (t <= L_d):
             
             J1_d = 1
             
@@ -105,13 +101,9 @@ def J1_d(t, z, parameters):
                 + z/(z + lambda_d)*np.exp(-lambda_d*(t - L_d))
         
     elif (z + lambda_d == 0):
-        
-        if (t == L_d):
-            
-            J1_d = 0
            
         # If time is less than minimum quiescence time cells do not proliferate 
-        elif (t < L_d):
+        if (t <= L_d):
             
             J1_d = 1
             
@@ -128,11 +120,7 @@ def J1_s(t, z, parameters):
     L_s = parameters[7]
     lambda_s = parameters[9]
     
-    if (t == L_s):
-        
-        J1_s = 0
-    
-    elif (t < L_s):
+    if (t <= L_s):
         
         J1_s = 1
         
@@ -215,12 +203,8 @@ def J4(t, z, parameters):
     M_d = parameters[5]
     L_s = parameters[7]
     lambda_s = parameters[9]
-
-    if (t == L_s + M_d):
-         
-         J4 = 0
     
-    elif (t < L_s + M_d):
+    if (t <= L_s + M_d):
         
         if (t <= L_s):
             
@@ -288,7 +272,6 @@ def cell_fractions(schedule, parameters, evaluationTime):
         elif (dose[i] == 0):
                 
             t = time[i + 1] - schedule[1][-1]
-            t0 = time[i] - schedule[1][-1]
             
             F_d[i + 1] = F_d[np.size(schedule[1])]*np.exp(-alpha_d*dose[i] - beta_d*dose[i]**2)*a(t, t0, parameters) \
                 + F_s[np.size(schedule[1])]*np.exp(-alpha_s*dose[i] - beta_s*dose[i]**2)*b(t, parameters)

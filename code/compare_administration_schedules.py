@@ -7,7 +7,7 @@ import warnings
 # Suppress warnings due to overflow. These do not affect results.
 warnings.filterwarnings('ignore')
 
-os.chdir('/Users/jamiedean/Documents/Papers/In Revision/Novel Glioblastoma Radiation Schedule/Github Repository/glioblastoma-radiation-therapy-schedule/code')
+os.chdir('/Users/jamiedean/Documents/Papers/Published/Novel Glioblastoma Radiation Schedule/Github Repository/glioblastoma-radiation-therapy-schedule/code')
 
 def compareSchedules(schedules, schedule_labels, schedule_colors, parameters, evaluationTime, filename):
     
@@ -28,7 +28,7 @@ def compareSchedules(schedules, schedule_labels, schedule_colors, parameters, ev
         plt.legend(loc = 'upper left', frameon = False, fontsize = 14)
         plt.tick_params(direction = 'in', labelsize = 14)
     
-    plt.savefig('/Users/jamiedean/Documents/Papers/In Revision/Novel Glioblastoma Radiation Schedule/Github Repository/glioblastoma-radiation-therapy-schedule//figures/' + filename + '_volume.pdf')
+    plt.savefig('/Users/jamiedean/Documents/Papers/Published/Novel Glioblastoma Radiation Schedule/Github Repository/glioblastoma-radiation-therapy-schedule//figures/' + filename + '_volume.pdf')
     
     plt.figure()
     
@@ -45,7 +45,7 @@ def compareSchedules(schedules, schedule_labels, schedule_colors, parameters, ev
         plt.legend(loc = 'upper left', frameon = False, fontsize = 14)
         plt.tick_params(direction = 'in', labelsize = 14)
     
-    plt.savefig('/Users/jamiedean/Documents/Papers/In Revision/Novel Glioblastoma Radiation Schedule/Github Repository/glioblastoma-radiation-therapy-schedule//figures/' + filename + '_stem_cell_fraction.pdf')
+    plt.savefig('/Users/jamiedean/Documents/Papers/Published/Novel Glioblastoma Radiation Schedule/Github Repository/glioblastoma-radiation-therapy-schedule//figures/' + filename + '_stem_cell_fraction.pdf')
     
 rtog1205 = \
     np.array([[3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5],
